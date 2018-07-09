@@ -1,0 +1,22 @@
+#marketing
+  #sign_up.card
+    .container
+      = simple_form_for @form, url: sign_up_step_one_path, class:'mt-5' do |f|
+        h4 Personal Informations
+        = f.input :first_name, placeholder: 'First name'
+        = f.input :last_name, placeholder: 'Last name'
+        hr
+
+        h4 Address
+        .row
+          = f.input :street_number, placeholder: 'Street number', wrapper_html: { class: 'col-sm-4' }
+          = f.input :street_name, placeholder: 'Street name', wrapper_html: { class: 'col-sm-8' }
+        .row
+          = f.input :zip_code, placeholder: 'Zip', wrapper_html: { class: 'col-sm-4' }
+          = f.input :city, placeholder: 'City', wrapper_html: { class: 'col-sm-8' }
+        hr
+
+        h3 Sign in informations
+        = f.input :email, placeholder: 'Email'
+        = f.input :password, placeholder: 'Password'
+        = f.button :submit, t('helpers.buttons.next_step'), class: 'btn btn-outline-success btn-lg'
