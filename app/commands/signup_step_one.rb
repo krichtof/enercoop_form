@@ -4,6 +4,7 @@ class SignupStepOne < Rectify::Command
   end
 
   def call
+    return broadcast(:invalid) if form.invalid?
     transaction do
       find_or_create_user
       update_user_attributes!
@@ -11,6 +12,7 @@ class SignupStepOne < Rectify::Command
       store_registration_token_in_session
     end
 
+    broadcast(:ok)
   end
 
   private

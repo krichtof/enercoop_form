@@ -13,7 +13,8 @@ class UsersController < Clearance::UsersController
   def step_one
     @form = UserStepOneForm.from_params params
     SignupStepOne.call(@form) do
-      redirect_to sign_up_path
+      on(:ok) { redirect_to sign_up_path }
+      on(:invalid) { render :step_one }
     end
   end
 
@@ -28,5 +29,4 @@ class UsersController < Clearance::UsersController
       render :new
     end
   end
-
 end

@@ -10,18 +10,16 @@ feature 'Visitor signs up' do
   end
 
   scenario 'only step_one' do
-    sign_up_step_one_with(first_name: 'Jeanne', last_name: 'Calmos',
-      street_number: '1', street_name: 'place de la République', zip_code: '75010', city: 'Paris',
-      email: 'achat@robiweb.net', password: 'password')
+    sign_up_step_one_with(attributes_for(:user))
 
     expect_user_to_complete_step_one
   end
 
   scenario 'tries with invalid email' do
+    sign_up_step_one_with(attributes_for(:user, email: 'coucou'))
+    expect(page).to have_content('is invalid')
   end
 
-  scenario 'tries with blank password' do
-  end
   def sign_up_step_one_with(params)
     visit sign_up_path
     fill_in 'user_first_name', with: params[:first_name]
@@ -45,4 +43,3 @@ feature 'Visitor signs up' do
     expect(page).to have_text('Situation')
   end
 end
-

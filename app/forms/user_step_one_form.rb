@@ -10,5 +10,6 @@ class UserStepOneForm < Rectify::Form
   attribute :email, String
   attribute :password, String
 
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates_presence_of :first_name, :last_name, :street_name, :zip_code, :city, :email, :password
 end
-
