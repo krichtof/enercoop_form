@@ -21,3 +21,8 @@
 
 en:
   hello: "Hello world"
+  helpers:
+    buttons:
+      next_step: 'go to next step'
+      submit: 'submit'
+

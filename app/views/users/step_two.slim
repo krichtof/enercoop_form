@@ -1,0 +1,23 @@
+#marketing
+  #sign_up.card
+    .container
+      .form-steps
+        div class="#{step_classes(@form, completed: true)}"
+          .form-steps__step-circle
+            span.form-steps__step-number 1
+            span.form-steps__step-check ✓
+          span.form-step__step-name Step 1
+        div class="#{step_classes(@form, active: true, last: true)}"
+          .form-steps__step-circle
+            span.form-steps__step-number 2
+            span.form-steps__step-check ✓
+          span.form-step__step-name Step 2
+
+      = simple_form_for @form, url: sign_up_step_two_path, method: :post, class:'mt-5' do |f|
+        h4 Situation
+        = f.collection_radio_buttons :situation, situation_options, :first, :last, item_wrapper_class: :block_radio_button_collection
+        hr
+        h3 Technical informations
+        = f.input :pdl, placeholder: 'pdl'
+        = link_to 'Go Back ', sign_up_path(goto: 'step_one')
+        = f.button :submit, t('helpers.buttons.submit'), class: 'btn btn-outline-success btn-lg'

@@ -1,0 +1,33 @@
+#marketing
+  #sign_up.card
+    .container
+      .form-steps
+        div class="#{step_classes(@form, active: true)}"
+          .form-steps__step-circle
+            span.form-steps__step-number 1
+            span.form-steps__step-check ✓
+          span.form-step__step-name Step 1
+        div class="#{step_classes(@form, last: true)}"
+          .form-steps__step-circle
+            span.form-steps__step-number 2
+            span.form-steps__step-check ✓
+          span.form-step__step-name Step 2
+      = simple_form_for @form, url: sign_up_step_one_path, method: :post, class:'mt-5' do |f|
+        h4 Personal Informations
+        = f.input :first_name, placeholder: 'First name'
+        = f.input :last_name, placeholder: 'Last name'
+        hr
+
+        h4 Address
+        .row
+          = f.input :street_number, placeholder: 'Street number', wrapper_html: { class: 'col-sm-4' }
+          = f.input :street_name, placeholder: 'Street name', wrapper_html: { class: 'col-sm-8' }
+        .row
+          = f.input :zip_code, placeholder: 'Zip', wrapper_html: { class: 'col-sm-4' }
+          = f.input :city, placeholder: 'City', wrapper_html: { class: 'col-sm-8' }
+        hr
+
+        h3 Sign in informations
+        = f.input :email, placeholder: 'Email'
+        = f.input :password, placeholder: 'Password'
+        = f.button :submit, t('helpers.buttons.next_step'), class: 'btn btn-outline-success btn-lg'

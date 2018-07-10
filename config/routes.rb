@@ -22,5 +22,7 @@ Rails.application.routes.draw do
       resource :password, only: [:create, :edit, :update]
     end
     get '/sign_up' => :new, as: :sign_up
+    post '/sign_up_step_one' => :step_one, as: :sign_up_step_one
+    post '/sign_up_step_two' => :step_two, as: :sign_up_step_two
   end
 end
