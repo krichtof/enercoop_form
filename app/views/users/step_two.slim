@@ -19,4 +19,5 @@
         hr
         h3 Technical informations
         = f.input :pdl, placeholder: 'pdl'
+        = link_to 'Go Back ', sign_up_path(goto: 'step_one')
         = f.button :submit, t('helpers.buttons.submit'), class: 'btn btn-outline-success btn-lg'

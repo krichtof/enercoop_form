@@ -2,7 +2,7 @@ class UsersController < Clearance::UsersController
   def new
     @user = User.find_by(registration_token: session[:registration_token]) || User.new
 
-    if @user.step_one_completed?
+    if @user.step_one_completed? && params[:goto] != 'step_one'
       @form = UserStepTwoForm.from_model @user
       render 'step_two'
     else
