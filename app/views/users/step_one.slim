@@ -1,6 +1,17 @@
 #marketing
   #sign_up.card
     .container
+      .form-steps
+        div class="#{step_classes(@form, active: true)}"
+          .form-steps__step-circle
+            span.form-steps__step-number 1
+            span.form-steps__step-check ✓
+          span.form-step__step-name Step 1
+        div class="#{step_classes(@form, last: true)}"
+          .form-steps__step-circle
+            span.form-steps__step-number 2
+            span.form-steps__step-check ✓
+          span.form-step__step-name Step 2
       = simple_form_for @form, url: sign_up_step_one_path, method: :post, class:'mt-5' do |f|
         h4 Personal Informations
         = f.input :first_name, placeholder: 'First name'

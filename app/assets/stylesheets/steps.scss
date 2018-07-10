@@ -1,0 +1,119 @@
+.form-steps {
+  width: 100%;
+  clear: both;
+
+	&:before,
+	&:after {
+		display: table;
+		content: "";
+	}
+
+	&:after {
+		clear: both;
+	}
+}
+
+// Step wrapper
+.form-steps__step {
+  width: 33.33333%;
+  float: left;
+  padding: 1em;
+  text-align: center;
+  position: relative;
+  
+  // this is the progress line  
+  &:after {
+    content: "";
+    background: #eee;
+    height: .4em;
+    top: 2.4em;
+    left: 50%;
+    width: 100%;
+    display: block;
+    position: absolute;
+    z-index: 1;
+  }
+  
+  // we use the before for create a white space between the circle and the progress line  
+  &:before {
+    content: "";
+    background: #fff;
+    height: .4em;
+    top: 2.4em;
+    left: 50%;
+    margin-left: -2em;
+    width: 4em;
+    display: block;
+    position: absolute;
+    z-index: 2;
+  }
+  
+  // if is the last
+  &--last {
+    &:after {
+      display: none;
+    }
+  }
+  
+  // if is the active (current) step
+  &--active {
+    // change the color of the circle    
+    .form-steps__step-circle {    
+      background: #7CB342;
+      border: 1px solid #33691E;
+      color: #fff;
+    }
+  }
+  
+  // if is completed
+  &--completed {
+    // change the color of the progress bar
+    &:after {
+      background: #7CB342;
+    }
+    
+    // change the color of the circle    
+    .form-steps__step-circle {    
+      background: #7CB342;
+      border: 1px solid #33691E;
+      color: #fff;
+
+      // when is completed we show the checkmark and hide the number    
+      .form-steps__step-number {
+        display: none;
+      }
+
+      .form-steps__step-check {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+// The number of the step
+.form-steps__step-circle {
+  background: #eee;
+  border: 1px solid #bdbdbd;
+  line-height: 3.2em;
+  border-radius: 50%;
+  height: 3em;
+  width: 3em;
+  text-align: center;
+  color: #bdbdbd;
+  margin: 0 auto;
+  position: relative;
+  z-index: 3;
+}
+
+// By default we hide the checkmark
+.form-steps__step-check {
+  display: none;
+}
+
+// The name of the step
+.form-step__step-name {
+  margin-top: .8em;
+  display: inline-block;
+  font-size: 1em;
+  line-height: 1.4em;
+}
