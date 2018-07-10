@@ -1,7 +1,7 @@
 #marketing
   #sign_up.card
     .container
-      = simple_form_for @form, url: sign_up_step_one_path, class:'mt-5' do |f|
+      = simple_form_for @form, url: sign_up_step_one_path, method: :post, class:'mt-5' do |f|
         h4 Personal Informations
         = f.input :first_name, placeholder: 'First name'
         = f.input :last_name, placeholder: 'Last name'

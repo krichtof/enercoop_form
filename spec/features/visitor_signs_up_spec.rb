@@ -12,12 +12,17 @@ feature 'Visitor signs up' do
   scenario 'only step_one' do
     sign_up_step_one_with(attributes_for(:user))
 
-    expect_user_to_complete_step_one
+    expect(page).to have_text('Situation')
   end
 
   scenario 'tries with invalid email' do
     sign_up_step_one_with(attributes_for(:user, email: 'coucou'))
     expect(page).to have_content('is invalid')
+  end
+
+  scenario 'with step one and step two' do
+    sign_up_with(attributes_for(:user, situation: 'I move in', pdl: '12345678901234'))
+    expect(page).to have_text('Well done')
   end
 
   def sign_up_step_one_with(params)
@@ -27,6 +32,7 @@ feature 'Visitor signs up' do
     fill_in 'user_street_number', with: params[:street_number]
     fill_in 'user_street_name', with: params[:street_name]
     fill_in 'user_zip_code', with: params[:zip_code]
+    fill_in 'user_city', with: params[:city]
     fill_in 'user_email', with: params[:email]
     fill_in 'user_password', with: params[:password]
     click_button I18n.t('helpers.buttons.next_step')
@@ -37,9 +43,5 @@ feature 'Visitor signs up' do
     choose params[:situation]
     fill_in 'user_pdl', with: params[:pdl]
     click_button I18n.t('helpers.buttons.submit')
-  end
-
-  def expect_user_to_complete_step_one
-    expect(page).to have_text('Situation')
   end
 end

@@ -1,3 +1,10 @@
 #marketing
   #sign_up.card
-    p Situation
+    .container
+      = simple_form_for @form, url: sign_up_step_two_path, method: :post, class:'mt-5' do |f|
+        h4 Situation
+        = f.collection_radio_buttons :situation, situation_options, :first, :last, item_wrapper_class: :block_radio_button_collection
+        hr
+        h3 Technical informations
+        = f.input :pdl, placeholder: 'pdl'
+        = f.button :submit, t('helpers.buttons.submit'), class: 'btn btn-outline-success btn-lg'
